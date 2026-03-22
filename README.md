@@ -1,4 +1,4 @@
-# Tania Bhattacharyya - Developer Portfolio 🚀
+# Mannat Jain - Portfolio 🚀
 
 A modern, interactive, and responsive personal portfolio website showcasing my skills, projects, and professional journey as a developer with a focus on AI/ML and Full-Stack Development.
 
@@ -62,9 +62,9 @@ To run this project on your local machine, follow these steps:
 ## 🤝 Contact
 
 Feel free to reach out to me for innovative projects, AI-ML research, or Full Stack opportunities:
-- **Email**: taniabhat2017@gmail.com
-- **LinkedIn**: [Tania Bhattacharyya](https://www.linkedin.com/in/tania-bhattacharyya-164564294/)
-- **GitHub**: [@taniabhat](https://github.com/taniabhat)
+- **Email**: mannatjain1495@gmail.com
+- **LinkedIn**: [Mannat Jain](https://www.linkedin.com/in/mannatjain14/)
+- **GitHub**: [@mannat_jain](https://github.com/Mannat-jain)
 
 ---
-*Designed & Built by Tania Bhattacharyya*
+*Designed & Built by Mannat Jain*
