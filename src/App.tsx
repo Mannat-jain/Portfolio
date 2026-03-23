@@ -549,48 +549,106 @@ const CodingProfiles = () => {
 
 // ── Certificates ───────────────────────────────────────────────────────────
 const Certificates = () => {
+  const [hoveredCert, setHoveredCert] = useState(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
   const certificates = [
     {
       title: "Oracle Cloud Infrastructure 2025 Certified Foundations Associate",
       org: "Oracle",
       date: "Oct 2025",
       link: "https://drive.google.com/file/d/1K0D4X7ODtyaT4Hc7JfaNi5clorCFK7Lp/view?usp=drive_link",
+      preview: "https://drive.google.com/thumbnail?id=1K0D4X7ODtyaT4Hc7JfaNi5clorCFK7Lp&sz=w600",
       icon: Database,
       textColor: "text-accent-primary",
+      borderColor: "border-accent-primary/40",
     },
     {
       title: "21 Projects, 21 Days: ML, Deep Learning & GenAI",
       org: "GeeksforGeeks",
       date: "Sep 2025",
       link: "https://drive.google.com/file/d/1SB4dtevrU_jHPmgsMfcYHjQeoGAJJL-F/view?usp=drive_link",
+      preview: "https://drive.google.com/thumbnail?id=1SB4dtevrU_jHPmgsMfcYHjQeoGAJJL-F&sz=w600",
       icon: BrainCircuit,
       textColor: "text-accent-secondary",
+      borderColor: "border-accent-secondary/40",
     },
     {
       title: "Advanced Python for ML & AI",
       org: "CSE Pathshala",
       date: "Jul 2025",
       link: "https://drive.google.com/file/d/1rNB4Y8H9vZikOAoKTk0v23nv_EEnzdK-/view?usp=drive_link",
+      preview: "https://drive.google.com/thumbnail?id=1rNB4Y8H9vZikOAoKTk0v23nv_EEnzdK-&sz=w600",
       icon: Cpu,
       textColor: "text-accent-cyan",
+      borderColor: "border-accent-cyan/40",
     },
   ];
 
+  const handleMouseMove = (e) => {
+    setMousePos({ x: e.clientX, y: e.clientY });
+  };
+
   return (
-    <section id="certificates" className="py-24 bg-white/[0.02]">
+    <section id="certificates" className="py-24 bg-white/[0.02]" onMouseMove={handleMouseMove}>
+      {/* Floating certificate preview that follows cursor */}
+      <AnimatePresence>
+        {hoveredCert !== null && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.85, y: 10 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            className="fixed z-50 pointer-events-none"
+            style={{
+              left: mousePos.x + 24,
+              top: mousePos.y - 120,
+            }}
+          >
+            <div className="w-72 rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[#0a0a1a]">
+              <img
+                src={certificates[hoveredCert].preview}
+                alt="Certificate Preview"
+                className="w-full h-auto object-cover"
+                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+              />
+              <div className="px-4 py-3 flex items-center gap-2">
+                <span className={`text-xs font-mono font-bold ${certificates[hoveredCert].textColor}`}>
+                  {certificates[hoveredCert].org}
+                </span>
+                <span className="text-white/30 text-xs">·</span>
+                <span className="text-white/50 text-xs">{certificates[hoveredCert].date}</span>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">Certifications & <span className="text-accent-primary">Credentials</span></h2>
-          <p className="text-white/50 max-w-xl mx-auto">Industry-recognized certifications validating my expertise.</p>
+          <p className="text-white/50 max-w-xl mx-auto">Hover a card to preview the certificate. Click to open it.</p>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
           {certificates.map((cert, i) => (
-            <motion.div
+            <motion.a
               key={cert.title}
-              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }}
-              className="glass-card p-8 group hover:border-white/20 transition-all relative overflow-hidden"
+              href={cert.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.15 }}
+              onMouseEnter={() => setHoveredCert(i)}
+              onMouseLeave={() => setHoveredCert(null)}
+              className={`glass-card p-8 group hover:border-white/20 transition-all relative overflow-hidden block cursor-pointer ${hoveredCert === i ? cert.borderColor + ' border' : ''}`}
             >
-              <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><cert.icon size={80} /></div>
+              {/* Faint bg icon */}
+              <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
+                <cert.icon size={80} />
+              </div>
+
               <div className="relative z-10">
                 <div className="mb-6 p-3 bg-white/5 rounded-xl w-fit group-hover:scale-110 transition-transform">
                   <cert.icon size={28} className={cert.textColor} />
@@ -598,18 +656,17 @@ const Certificates = () => {
                 <h3 className="text-xl font-bold mb-2">{cert.title}</h3>
                 <p className={`${cert.textColor} text-sm font-medium mb-1`}>{cert.org}</p>
                 <p className="text-xs text-white/40 font-mono mb-6">Completed: {cert.date}</p>
-                <a
-                  href={cert.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2 bg-white/5 hover:bg-white/10 rounded-full text-sm font-medium transition-all group/link"
-                >
+
+                <span className="inline-flex items-center gap-2 px-5 py-2 bg-white/5 group-hover:bg-white/10 rounded-full text-sm font-medium transition-all">
                   <Award size={16} className={cert.textColor} />
                   View Certificate
-                  <ExternalLink size={14} className="opacity-50 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all" />
-                </a>
+                  <ExternalLink size={14} className="opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                </span>
               </div>
-            </motion.div>
+
+              {/* Hover glow */}
+              <div className="absolute -bottom-8 -right-8 w-32 h-32 rounded-full blur-3xl opacity-0 group-hover:opacity-20 transition-opacity" style={{ backgroundColor: cert.textColor.includes('primary') ? '#6366f1' : cert.textColor.includes('secondary') ? '#a855f7' : '#22d3ee' }} />
+            </motion.a>
           ))}
         </div>
       </div>
