@@ -558,7 +558,7 @@ const Certificates = () => {
       org: "Oracle",
       date: "Oct 2025",
       link: "https://drive.google.com/file/d/1K0D4X7ODtyaT4Hc7JfaNi5clorCFK7Lp/view?usp=drive_link",
-      preview: "https://drive.google.com/thumbnail?id=1K0D4X7ODtyaT4Hc7JfaNi5clorCFK7Lp&sz=w600",
+      preview: "https://i.ibb.co/tp7RLXV8/Oracle-1.jpg",
       icon: Database,
       textColor: "text-accent-primary",
       borderColor: "border-accent-primary/40",
@@ -568,7 +568,7 @@ const Certificates = () => {
       org: "GeeksforGeeks",
       date: "Sep 2025",
       link: "https://drive.google.com/file/d/1SB4dtevrU_jHPmgsMfcYHjQeoGAJJL-F/view?usp=drive_link",
-      preview: "https://drive.google.com/thumbnail?id=1SB4dtevrU_jHPmgsMfcYHjQeoGAJJL-F&sz=w600",
+      preview: "https://i.ibb.co/WNpfDcwP/Geeksfor-Geeks-1.jpg",
       icon: BrainCircuit,
       textColor: "text-accent-secondary",
       borderColor: "border-accent-secondary/40",
@@ -578,7 +578,7 @@ const Certificates = () => {
       org: "CSE Pathshala",
       date: "Jul 2025",
       link: "https://drive.google.com/file/d/1rNB4Y8H9vZikOAoKTk0v23nv_EEnzdK-/view?usp=drive_link",
-      preview: "https://drive.google.com/thumbnail?id=1rNB4Y8H9vZikOAoKTk0v23nv_EEnzdK-&sz=w600",
+      preview: "https://i.ibb.co/JRZrhzDN/CSE-Pathshala-1.png",
       icon: Cpu,
       textColor: "text-accent-cyan",
       borderColor: "border-accent-cyan/40",
@@ -690,7 +690,7 @@ const Education = () => (
                 <p className="text-accent-primary font-medium">Lovely Professional University</p>
                 <p className="text-white/50 text-sm mt-1">Specialization: Artificial Intelligence and Machine Learning</p>
               </div>
-              <span className="px-4 py-1 bg-accent-primary/20 rounded-full text-sm font-bold text-accent-primary whitespace-nowrap">CGPA: 8.4 / 10</span>
+              <span className="px-4 py-1 bg-accent-primary/20 rounded-full text-sm font-bold text-accent-primary whitespace-nowrap">CGPA: 8.36 / 10</span>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-6 border-t border-white/10">
               <div><h5 className="text-xs font-mono text-white/40 uppercase mb-1">Location</h5><p className="text-sm font-medium">Phagwara, Punjab</p></div>
@@ -756,7 +756,7 @@ const Contact = () => {
         const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ access_key: 'YOUR_ACCESS_KEY_HERE', name: name.trim(), email: email.trim(), message: message.trim(), subject: `Portfolio Contact from ${name.trim()}` }),
+          body: JSON.stringify({ access_key: 'ee02ebbd-21d2-47dc-aa25-bca7083b8754', name: name.trim(), email: email.trim(), message: message.trim(), subject: `Portfolio Contact from ${name.trim()}` }),
         });
         const result = await res.json();
         if (result.success) { setShowSuccess(true); setName(''); setEmail(''); setMessage(''); setTimeout(() => setShowSuccess(false), 5000); }
