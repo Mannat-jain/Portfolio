@@ -198,7 +198,7 @@ const About = () => (
         <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative">
           <div className="aspect-square glass-card p-4 relative z-10 overflow-hidden group cursor-pointer">
             <img
-              src="https://i.ibb.co/234LRHMZ/Whats-App-Image-2026-03-22-at-20-13-01.jpg"
+              src="https://i.ibb.co/hFHDQvdq/1774413473227.png"
               alt="Mannat Jain"
               className="w-full h-full object-cover rounded-xl grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
             />
